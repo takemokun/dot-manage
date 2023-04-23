@@ -1,0 +1,42 @@
+[alias]
+  ################
+  a = add
+  ap = add -p
+  ################
+  s = status
+  ################
+  b = branch
+  ################
+  bd = branch -d
+  bdd = branch -D
+  ################
+  d = diff
+  dc = diff --cached
+  #################
+  l = log --oneline
+  lg = log --oneline --graph --decorate
+  lga = log --oneline --graph --decorate --all
+  #################
+  o = checkout
+  om = checkout master
+  ob = checkout -b
+  ################
+  c = commit
+  ################
+  fe = fetch -p
+  ###############
+  pu = push -u origin HEAD
+  ################
+  bdm = "!f () { git checkout $1; git branch --merged|egrep -v '\\*|develop|main'|xargs git branch -d; git fetch --prune; };f"
+
+[user]
+	name = takemokun
+	email = takemo.takemokun@gmail.com
+	password = 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
+[fetch]
+	prune = true
+[pull]
+	rebase = false
+[safe]
+	directory = /home/casy/app
+	directory = /home/casy/app
