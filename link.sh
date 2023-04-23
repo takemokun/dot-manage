@@ -1,5 +1,6 @@
-ln -s ~/.config/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/.config/dotfiles/.vimrc ~/.vimrc
-ln -s ~/.config/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/.config/dotfiles/nvim ~/.config/nvim
+ln -s $(pwd)/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s $(pwd)/.vimrc ~/.vimrc
+ln -s $(pwd)/.gitconfig ~/.gitconfig
+ln -s $(pwd)/nvim ~/.config/nvim
+ln -s $(pwd)/.ideavimrc ~/.ideavimrc
 
