@@ -1,8 +1,16 @@
 # dotfiles
 
+## install
+
+```
+git clone --depth=1 https://github.com/takemokun/dotfiles.git ~/.config/dotfiles
+```
+
 ## 使い方
 
+
 ```zsh
+
 # enable
 sh link.sh
 sh linkPowerlevel10k.sh
