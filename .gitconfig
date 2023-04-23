@@ -40,3 +40,5 @@
 [safe]
 	directory = /home/casy/app
 	directory = /home/casy/app
+[core]
+    editor = nvim
