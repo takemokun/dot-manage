@@ -137,6 +137,12 @@ alias da="docker attach"
 alias dls="docker container ls"
 alias dlog="docker logs -f"
 
+# tmux
+alias tmls="tmux ls"
+alias tma="tmux attach -t"
+alias tmn="tmux new -s"
+alias tmk="tmux kill-session -t"
+
 # AUBO用
 alias aubo="ssh ec2-user@18.179.248.106"
 alias cda="cd ~/Developments/aubo"
