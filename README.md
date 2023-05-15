@@ -8,16 +8,17 @@ git clone --depth=1 https://github.com/takemokun/dotfiles.git ~/.config/dotfiles
 
 ## 使い方
 
+※ cargo（rust）が使える環境が必要です
 
 ```zsh
-
 # enable
-sh link.sh
-sh linkPowerlevel10k.sh
+cargo run
 
-# disable
-sh unlink.sh
-sh unlinkPowerlevel10k.sh
+# commands
+copy:       dotfilesからコピー
+sync:       dotfilesにコピー
+clean:      バックアップファイルの削除 
+clean_self: dotfiles内のバックアップファイル削除
 ```
 
 ## 必要なこと
