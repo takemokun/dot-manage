@@ -1,0 +1,37 @@
+[
+ {
+    "from": ".zshrc",
+    "to": "$HOME/.zshrc",
+    "copy_type": "replace"
+  },
+  {
+    "from": ".gitconfig",
+    "to": "$HOME/.gitconfig",
+    "copy_type": "replace"
+  },
+  {
+    "from": ".ideavimrc",
+    "to": "$HOME/.ideavimrc",
+    "copy_type": "replace"
+  },
+  {
+    "from": ".tmux.conf",
+    "to": "$HOME/.tmux.conf",
+    "copy_type": "replace"
+  },
+  {
+    "from": ".vimrc",
+    "to": "$HOME/.vimrc",
+    "copy_type": "replace"
+  },
+  {
+    "from": "nvim",
+    "to": "$HOME/.config/nvim",
+    "copy_type": "replace"
+  },
+  {
+    "from": "oh-my-zsh-themes",
+    "to": "$HOME/.oh-my-zsh/custom/themes",
+    "copy_type": "append"
+  }
+]
