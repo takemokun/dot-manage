@@ -11,6 +11,7 @@ mod constants {
 
 mod commands;
 mod models;
+mod services;
 
 pub use constants::home_path;
 pub use commands::*;
