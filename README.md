@@ -10,8 +10,19 @@ git clone --depth=1 https://github.com/takemokun/dotfiles.git ~/.config/dotfiles
 
 ※ cargo（rust）が使える環境が必要です
 
+### .envの設定
 ```zsh
-# enable
+cp .env.sample .env
+vi .env
+
+# HOME_PATHを自分のユーザールートに設定する
+HOME_PATH=/Users/username
+```
+
+### dotfilesの設定
+
+```zsh
+# dotfilesからの操作
 cargo run
 
 # commands
