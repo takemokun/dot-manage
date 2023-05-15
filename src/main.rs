@@ -15,6 +15,4 @@ fn main() {
         "sync" => dotfiles::sync::run(),
         _ => println!("error"),
     }
-    // fs::copy(".zshrc", &copy_path).expect("failed to copy file");
-    // println!("{}", timestamp);
 }
