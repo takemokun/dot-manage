@@ -23,7 +23,8 @@
   ################
   c = commit
   ################
-  fe = fetch -p
+  f = fetch
+  fp = fetch -p
   ###############
   pu = push -u origin HEAD
   ################
