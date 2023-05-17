@@ -6,6 +6,8 @@ require("my-cmp")
 require("lsp")
 
 vim.cmd[[colorscheme tokyonight-night]]
+vim.cmd('highlight Visual guibg=#003388')
+
 
 -- vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
 --   group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
