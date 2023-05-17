@@ -1,18 +1,27 @@
+use std::io::Write;
 use std::io;
+use std::process::exit;
 
 fn main() {
     let mut command = String::new();
+    let available_commands = dotfiles::command_info::available_commands();
+    println!("実行したい内容を入力してください({})", available_commands.join(", "));
 
-    println!("実行したい内容を入力してください\n(copy, clean, clean_self, sync)");
+    loop {
+        print!("> ");
+        io::stdout().flush().unwrap();
 
-    io::stdin().read_line(&mut command).unwrap();
-    let command: String = command.trim().parse().expect("文字列を入力してください");
+        command.clear(); // Clear the previous command
+        io::stdin().read_line(&mut command).unwrap();
 
-    match command.as_str() {
-        "copy" => dotfiles::copy::run(),
-        "clean" => dotfiles::clean::run(),
-        "clean_self" => dotfiles::clean_self::run(),
-        "sync" => dotfiles::sync::run(),
-        _ => println!("error"),
+        let current_command: String = command.trim().parse().expect("文字列を入力してください");
+        let is_progress_command = dotfiles::command_info::progress_command(&current_command);
+
+        if !is_progress_command {
+            command = current_command;
+            break;
+        }
     }
+
+    dotfiles::command_info::main_command(&command);
 }
