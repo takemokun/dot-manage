@@ -105,11 +105,11 @@ fn generate_help_message(commands: &[CommandInfo]) -> String {
 
     let indent = " ".repeat(4);
     let indent_double = indent.repeat(2).clone();
-    let command_space = " ".repeat(4);
 
     let mut help_message = textwrap::dedent(&format!("
-        dotfiles
-        ========
+        =====================================================
+        ==                      Help                       ==
+        =====================================================
 
         {}Usage:
         {}dotfiles <command>
@@ -119,11 +119,13 @@ fn generate_help_message(commands: &[CommandInfo]) -> String {
 
     for command in commands {
         let padded_name = format!("{:<width$}", command.name.green().bold(), width = max_length);
-        help_message.push_str(&format!("{}{}{}{}\n", indent_double, padded_name, command_space, command.description.magenta()));
+        help_message.push_str(&format!("{}{}{}{}\n", indent_double, padded_name, indent, command.description.magenta()));
+
         if !command.example.is_empty() {
-            let sub_indent = " ".repeat(max_length) + &indent;
-            help_message.push_str(&format!("{}{}{}Ex. {}\n", indent_double, sub_indent, command_space, command.example));
+            let indent_to_description_line = " ".repeat(max_length);
+            help_message.push_str(&format!("{}{}{}Ex. {}\n", indent_double, indent_to_description_line, indent_double, command.example));
         }
+
         help_message.push_str("\n");
     }
 
