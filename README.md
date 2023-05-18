@@ -29,7 +29,7 @@ cargo run
 copy:       dotfilesからコピー
 sync:       dotfilesにコピー
 clean:      バックアップファイルの削除 
-clean_self: dotfiles内のバックアップファイル削除
+clean_me: dotfiles内のバックアップファイル削除
 ```
 
 ## 必要なこと

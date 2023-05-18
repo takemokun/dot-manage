@@ -5,7 +5,7 @@ pub trait PathBehavior {
     fn copy(&self);
     fn sync(&self);
     fn clean(&self);
-    fn clean_self(&self);
+    fn clean_me(&self);
     fn append_targets(&self) -> Vec<(String, String)> {
         Vec::new()
     }
@@ -34,7 +34,7 @@ impl PathBehavior for ReplaceBehavior {
         file_manager::clean(&self.to);
     }
 
-    fn clean_self(&self) {
+    fn clean_me(&self) {
         file_manager::clean(&self.from);
     }
 }
@@ -58,7 +58,7 @@ impl PathBehavior for AppendBehavior {
         }
     }
 
-    fn clean_self(&self) {
+    fn clean_me(&self) {
         for target in &self.append_targets() {
             file_manager::clean(&target.0);
         }

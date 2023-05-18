@@ -27,8 +27,8 @@ impl Mapping {
         let _ = &self.path_behavior().clean();
     }
 
-    pub fn clean_self(&self) {
-        let _ = &self.path_behavior().clean_self();
+    pub fn clean_me(&self) {
+        let _ = &self.path_behavior().clean_me();
     }
 
     pub fn sync(&self) {

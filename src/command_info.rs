@@ -83,10 +83,10 @@ pub fn main_command(command: &str) {
     let command_info = commands.iter().find(|c| c.name == command).unwrap();
 
     match command_info.command {
-        Command::Copy => crate::copy::run(),
-        Command::Sync => crate::sync::run(),
-        Command::Clean => crate::clean::run(),
-        Command::CleanSelf => crate::clean_self::run(),
+        Command::Copy => crate::commands::copy(),
+        Command::Sync => crate::commands::sync(),
+        Command::Clean => crate::commands::clean(),
+        Command::CleanSelf => crate::commands::clean_me(),
         Command::Help => help(),
     }
 }
