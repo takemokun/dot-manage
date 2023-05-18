@@ -9,7 +9,6 @@ enum Command {
     Clean,
     CleanSelf,
     Help,
-    Quit,
 }
 
 #[derive(Debug)]
@@ -54,12 +53,6 @@ fn generate_commands() -> Vec<CommandInfo> {
             example: "",
             command: Command::Help,
         },
-        CommandInfo {
-            name: "quit",
-            description: "Exits the program.",
-            example: "",
-            command: Command::Quit,
-        },
     ]
 }
 
@@ -81,9 +74,6 @@ pub fn progress_command(command: &str) -> bool {
             help();
             true
         },
-        Command::Quit => {
-            panic!("bye!")
-        },
         _ => false,
     }
 }
@@ -97,7 +87,7 @@ pub fn main_command(command: &str) {
         Command::Sync => crate::sync::run(),
         Command::Clean => crate::clean::run(),
         Command::CleanSelf => crate::clean_self::run(),
-        _ => println!("error"),
+        Command::Help => help(),
     }
 }
 
