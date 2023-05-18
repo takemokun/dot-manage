@@ -1,7 +1,11 @@
-use crate::constants;
-use crate::models;
 use std::fs::File;
 use std::io::BufReader;
+use std::io::Write;
+use std::io;
+use colored::*;
+
+use crate::constants;
+use crate::models;
 
 pub fn copy() {
     run_on_all_data(models::Mapping::copy, "copy");
@@ -23,9 +27,57 @@ fn run_on_all_data<F: Fn(&models::Mapping)>(operation: F, operation_name: &str) 
     println!("starting {}...", operation_name);
 
     let mappings = read_mapping_or_panic();
+    let mut is_all = false;
+
     for mapping in &mappings {
-        operation(mapping);
+        if is_all {
+            operation(mapping);
+            continue;
+        }
+
+        let mut command = String::new();
+        loop {
+            print!("> {} to {} (y, n, a, q, h): ", operation_name.bold(), mapping.from.red().bold());
+
+            io::stdout().flush().unwrap();
+            command.clear();
+            io::stdin().read_line(&mut command).unwrap();
+            let current_command: String = command.trim().parse().expect("文字列を入力してください");
+
+            match current_command.as_str() {
+                "y" => operation(mapping),
+                "n" => {},
+                "a" => {
+                    is_all = true;
+                    operation(mapping)
+                },
+                "q" => {
+                    println!("quit");
+                    std::process::exit(0)
+                },
+                "h" => {
+                    print_help_message();
+                    continue;
+                },
+                _ => {
+                    println!("{} is not found\n", current_command);
+                    print_help_message();
+                    continue;
+                },
+            }
+
+            break
+        }
     }
+}
+
+fn print_help_message() {
+    println!("help:");
+    println!("    y: execute this file");
+    println!("    n: skip this file");
+    println!("    a: execute all files");
+    println!("    q: quit");
+    println!("    h: help");
 }
 
 fn read_mapping_or_panic() -> Vec<models::Mapping> {

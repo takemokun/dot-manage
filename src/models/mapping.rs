@@ -20,18 +20,22 @@ pub enum CopyType {
 
 impl Mapping {
     pub fn copy(&self) {
+        println!("copying from {} to {}", &self.from, &self.to);
         let _ = &self.path_behavior().copy();
     }
 
     pub fn clean(&self) {
+        println!("cleaning {}.*", &self.to);
         let _ = &self.path_behavior().clean();
     }
 
     pub fn clean_me(&self) {
+        println!("cleaning {}.*", &self.from);
         let _ = &self.path_behavior().clean_me();
     }
 
     pub fn sync(&self) {
+        println!("syncing from {} to {}", &self.to, &self.from);
         let _ = &self.path_behavior().sync();
     }
 
