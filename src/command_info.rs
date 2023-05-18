@@ -1,5 +1,6 @@
 use std::fmt::Debug;
 use colored::*;
+use textwrap;
 
 #[derive(Debug)]
 enum Command {
@@ -112,15 +113,26 @@ fn generate_help_message(commands: &[CommandInfo]) -> String {
         .max()
         .unwrap_or(0);
 
-    let mut help_message = String::from("Commands:\n");
+    let indent = " ".repeat(4);
+    let indent_double = indent.repeat(2).clone();
     let command_space = " ".repeat(4);
+
+    let mut help_message = textwrap::dedent(&format!("
+        dotfiles
+        ========
+
+        {}Usage:
+        {}dotfiles <command>
+        {}
+        {}Commands:
+    ", indent, indent_double, indent, indent));
 
     for command in commands {
         let padded_name = format!("{:<width$}", command.name.green().bold(), width = max_length);
-        help_message.push_str(&format!("  {}{}{}\n", padded_name, command_space, command.description.italic().magenta()));
+        help_message.push_str(&format!("{}{}{}{}\n", indent_double, padded_name, command_space, command.description.magenta()));
         if !command.example.is_empty() {
-            let indent = " ".repeat(max_length + 4);
-            help_message.push_str(&format!("{}{}Ex. {}\n", indent, command_space, command.example.italic()));
+            let sub_indent = " ".repeat(max_length) + &indent;
+            help_message.push_str(&format!("{}{}{}Ex. {}\n", indent_double, sub_indent, command_space, command.example));
         }
         help_message.push_str("\n");
     }
