@@ -1,4 +1,5 @@
 set clipboard=unnamed
+set incsearch
 
 noremap <Space>h  ^
 noremap <Space>l  $
@@ -20,3 +21,4 @@ inoremap <C-k> <C-o>D<Right>
 inoremap <C-u> <C-o>d^
 inoremap <C-w> <C-o>db
 
+xnoremap <Space>p "_dP
