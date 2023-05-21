@@ -4,6 +4,11 @@
     "to": "$HOME/.zshrc",
     "copy_type": "replace"
   },
+ {
+    "from": ".zsh",
+    "to": "$HOME/.zsh",
+    "copy_type": "replace"
+  },
   {
     "from": ".gitconfig",
     "to": "$HOME/.gitconfig",
