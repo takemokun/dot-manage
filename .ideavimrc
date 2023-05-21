@@ -1,5 +1,6 @@
 set clipboard=unnamed
 set incsearch
+set surround
 
 noremap <Space>h  ^
 noremap <Space>l  $
