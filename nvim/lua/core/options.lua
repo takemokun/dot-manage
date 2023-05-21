@@ -4,7 +4,6 @@ vim.opt.swapfile = false -- スワップファイルを作成しない
 vim.opt.helplang = "ja" -- ヘルプファイルの言語は日本語
 vim.opt.hidden = true -- バッファを切り替えるときに
                       --ファイルを保存しなくてもOKに
-
 -- カーソルと表示
 vim.opt.cursorline = true -- カーソルがある行を強調
 vim.opt.cursorcolumn = true -- カーソルがある列を強調
@@ -41,6 +40,7 @@ vim.opt.showtabline = 2 -- タブラインを表示
                         -- （1:常に表示、2:タブが開かれたときに表示）
 vim.opt.visualbell = true -- ビープ音を表示する代わりに画面をフラッシュ
 vim.opt.showmatch = true -- 対応する括弧をハイライト表示
+vim.opt.relativenumber = true -- 相対行番号を表示
 
 -- インタフェース
 vim.opt.winblend = 20 -- ウィンドウの不透明度

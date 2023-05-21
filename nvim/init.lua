@@ -1,13 +1,11 @@
-require("options")
-require("plugins")
-require("keymaps")
-require("my-nvim-tree")
-require("my-cmp")
-require("lsp")
-
-vim.cmd[[colorscheme tokyonight-night]]
-vim.cmd('highlight Visual guibg=#003388')
-
+require("core.options")
+require("core.keymaps")
+require("core.colorscheme")
+require("plugins-setup")
+require("plugins.lsp.lspconfig")
+require("plugins.nvim-tree")
+require("plugins.lualine")
+require("plugins.cmp")
 
 -- vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
 --   group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
@@ -16,4 +14,3 @@ vim.cmd('highlight Visual guibg=#003388')
 --     vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
 --   end
 -- })
- 
