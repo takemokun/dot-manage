@@ -1,7 +1,10 @@
+use std::fmt::Debug;
 use crate::services::file_manager;
 use std::path::Path;
 
-pub trait PathBehavior {
+pub trait PathBehavior: Debug {
+    fn from(&self) -> &String;
+    fn to(&self) -> &String;
     fn copy(&self);
     fn sync(&self);
     fn clean(&self);
@@ -11,17 +14,27 @@ pub trait PathBehavior {
     }
 }
 
+#[derive(Debug)]
 pub struct AppendBehavior {
     pub from: String,
     pub to: String,
 }
 
+#[derive(Debug)]
 pub struct ReplaceBehavior {
     pub from: String,
     pub to: String,
 }
 
 impl PathBehavior for ReplaceBehavior {
+    fn from(&self) -> &String {
+        &self.from
+    }
+
+    fn to(&self) -> &String {
+        &self.to
+    }
+
     fn copy(&self) {
         file_manager::copy(&self.from, &self.to);
     }
@@ -40,6 +53,14 @@ impl PathBehavior for ReplaceBehavior {
 }
 
 impl PathBehavior for AppendBehavior {
+    fn from(&self) -> &String {
+        &self.from
+    }
+
+    fn to(&self) -> &String {
+        &self.to
+    }
+
     fn copy(&self) {
         for target in &self.append_targets() {
             file_manager::copy(&target.0, &target.1);

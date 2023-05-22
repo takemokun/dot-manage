@@ -5,39 +5,39 @@ use std::io;
 use colored::*;
 
 use crate::constants;
-use crate::models;
+use crate::models::{Dotfile, Mapping};
 
 pub fn copy() {
-    run_on_all_data(models::Mapping::copy, "copy");
+    run_on_all_data(Dotfile::copy, "copy");
 }
 
 pub fn sync() {
-    run_on_all_data(models::Mapping::sync, "sync");
+    run_on_all_data(Dotfile::sync, "sync");
 }
 
 pub fn clean() {
-    run_on_all_data(models::Mapping::clean, "clean");
+    run_on_all_data(Dotfile::clean, "clean");
 }
 
 pub fn clean_me() {
-    run_on_all_data(models::Mapping::clean_me, "clean_me")
+    run_on_all_data(Dotfile::clean_me, "clean_me")
 }
 
-fn run_on_all_data<F: Fn(&models::Mapping)>(operation: F, operation_name: &str) {
+fn run_on_all_data<F: Fn(&Dotfile)>(operation: F, operation_name: &str) {
     println!("starting {}...", operation_name);
 
-    let mappings = read_mapping_or_panic();
+    let dotfile_data = read_mapping_or_panic();
     let mut is_all = false;
 
-    for mapping in &mappings {
+    for dotfile in &dotfile_data {
         if is_all {
-            operation(mapping);
+            operation(dotfile);
             continue;
         }
 
         let mut command = String::new();
         loop {
-            print!("> {} to {} (y, n, a, q, h): ", operation_name.bold(), mapping.from.red().bold());
+            print!("> {} to {} (y, n, a, q, h): ", operation_name.bold(), dotfile.path_behavior.from().red().bold());
 
             io::stdout().flush().unwrap();
             command.clear();
@@ -45,11 +45,11 @@ fn run_on_all_data<F: Fn(&models::Mapping)>(operation: F, operation_name: &str) 
             let current_command: String = command.trim().parse().expect("文字列を入力してください");
 
             match current_command.as_str() {
-                "y" => operation(mapping),
+                "y" => operation(dotfile),
                 "n" => {},
                 "a" => {
                     is_all = true;
-                    operation(mapping)
+                    operation(dotfile)
                 },
                 "q" => {
                     println!("quit");
@@ -80,15 +80,15 @@ fn print_help_message() {
     println!("    h: help");
 }
 
-fn read_mapping_or_panic() -> Vec<models::Mapping> {
+fn read_mapping_or_panic() -> Vec<Dotfile> {
     let file_path = constants::FILE_PATH;
     let file = File::open(file_path).expect("ファイルが存在しません");
     let buf_reader = BufReader::new(file);
-    let data: Vec<models::Mapping> = serde_json::from_reader(buf_reader).expect("デシリアライズに失敗しました");
+    let data: Vec<Mapping> = serde_json::from_reader(buf_reader).expect("デシリアライズに失敗しました");
 
     if data.len() == 0 {
         panic!("データが存在しません");
     }
 
-    data
+    data.iter().map(|d| Dotfile::new(d.clone())).collect()
 }

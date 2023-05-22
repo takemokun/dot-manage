@@ -11,7 +11,8 @@ mod constants {
 
 mod models;
 mod services;
-pub mod command_info;
+pub mod command_executor;
 pub mod commands;
+pub mod config;
 
 pub use constants::home_path;

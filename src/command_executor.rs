@@ -56,29 +56,7 @@ fn generate_commands() -> Vec<CommandInfo> {
     ]
 }
 
-pub fn available_commands() -> Vec<&'static str> {
-    generate_commands().iter().map(|c| c.name).collect()
-}
-
-pub fn progress_command(command: &str) -> bool {
-    let commands = generate_commands();
-    let command_info = commands.iter().find(|c| c.name == command);
-
-    if command_info.is_none() {
-        println!("{} is not found. try {}\n", command.red(), "help".green());
-        return true;
-    }
-
-    match command_info.unwrap().command {
-        Command::Help => {
-            help();
-            true
-        },
-        _ => false,
-    }
-}
-
-pub fn main_command(command: &str) {
+pub fn run(command: &str) {
     let commands = generate_commands();
     let command_info = commands.iter().find(|c| c.name == command).unwrap();
 
@@ -87,16 +65,11 @@ pub fn main_command(command: &str) {
         Command::Sync => crate::commands::sync(),
         Command::Clean => crate::commands::clean(),
         Command::CleanSelf => crate::commands::clean_me(),
-        Command::Help => help(),
+        Command::Help => display_help_message(&commands),
     }
 }
 
-pub fn help() {
-    let commands = generate_commands();
-    println!("{}", generate_help_message(&commands));
-}
-
-fn generate_help_message(commands: &[CommandInfo]) -> String {
+fn display_help_message(commands: &[CommandInfo]) {
     let max_length = commands
         .iter()
         .map(|command| command.name.len())
@@ -129,5 +102,5 @@ fn generate_help_message(commands: &[CommandInfo]) -> String {
         help_message.push_str("\n");
     }
 
-    help_message
+    println!("{}", help_message);
 }

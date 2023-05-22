@@ -1,15 +1,14 @@
-use std::process::exit;
+use std::process;
+use dotfiles::config::Config;
+use dotfiles::command_executor;
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
 
-    // 引数があるかどうかをチェック
-    if args.len() <= 1 {
-        dotfiles::command_info::help();
-        exit(0)
-    }
+    let config = Config::new(&args).unwrap_or_else(|err| {
+        println!("Problem parsing arguments: {}", err);
+        process::exit(1)
+    });
 
-    let command = &args[1];
-
-    dotfiles::command_info::main_command(&command);
+    command_executor::run(&config.command);
 }
