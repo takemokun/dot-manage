@@ -1,11 +1,9 @@
-use std::fs::File;
-use std::io::BufReader;
 use std::io::Write;
 use std::io;
 use colored::*;
 
-use crate::constants;
-use crate::models::{Dotfile, Mapping};
+use crate::models::Dotfile;
+use crate::factories::dotfile_factory;
 
 pub fn copy() {
     run_on_all_data(Dotfile::copy, "copy");
@@ -26,10 +24,10 @@ pub fn clean_me() {
 fn run_on_all_data<F: Fn(&Dotfile)>(operation: F, operation_name: &str) {
     println!("starting {}...", operation_name);
 
-    let dotfile_data = read_mapping_or_panic();
+    let dotfiles_data = dotfile_factory::create_from_mappings();
     let mut is_all = false;
 
-    for dotfile in &dotfile_data {
+    for dotfile in &dotfiles_data {
         if is_all {
             operation(dotfile);
             continue;
@@ -78,17 +76,4 @@ fn print_help_message() {
     println!("    a: execute all files");
     println!("    q: quit");
     println!("    h: help");
-}
-
-fn read_mapping_or_panic() -> Vec<Dotfile> {
-    let file_path = constants::FILE_PATH;
-    let file = File::open(file_path).expect("ファイルが存在しません");
-    let buf_reader = BufReader::new(file);
-    let data: Vec<Mapping> = serde_json::from_reader(buf_reader).expect("デシリアライズに失敗しました");
-
-    if data.len() == 0 {
-        panic!("データが存在しません");
-    }
-
-    data.iter().map(|d| Dotfile::new(d.clone())).collect()
 }

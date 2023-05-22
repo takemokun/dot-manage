@@ -1,10 +1,4 @@
-use crate::models::{
-    Mapping,
-    CopyType,
-    PathBehavior,
-    AppendBehavior,
-    ReplaceBehavior,
-};
+use crate::models::PathBehavior;
 
 #[derive(Debug)]
 pub struct Dotfile {
@@ -12,9 +6,7 @@ pub struct Dotfile {
 }
 
 impl Dotfile {
-    pub fn new(mapping: Mapping) -> Self {
-        let path_behavior = Self::create_path_behavior(mapping);
-
+    pub fn new(path_behavior: Box<dyn PathBehavior>) -> Self {
         Self {
             path_behavior,
         }
@@ -38,22 +30,5 @@ impl Dotfile {
     pub fn sync(&self) {
         println!("syncing from {} to {}", &self.path_behavior.to(), &self.path_behavior.from());
         let _ = &self.path_behavior.sync();
-    }
-
-    fn create_path_behavior(mapping: Mapping) -> Box<dyn PathBehavior> {
-        match &mapping.copy_type {
-            CopyType::Append => {
-                Box::new(AppendBehavior {
-                    from: mapping.from.clone(),
-                    to: mapping.to.clone(),
-                })
-            },
-            CopyType::Replace => {
-                Box::new(ReplaceBehavior {
-                    from: mapping.from.clone(),
-                    to: mapping.to.clone(),
-                })
-            },
-        }
     }
 }

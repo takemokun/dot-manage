@@ -20,8 +20,8 @@ pub enum CopyType {
 impl Mapping {}
 
 fn deserialize_copy_type<'de, D>(deserializer: D) -> Result<CopyType, D::Error>
-where
-    D: serde::Deserializer<'de>,
+    where
+        D: serde::Deserializer<'de>,
 {
     let s = String::deserialize(deserializer)?;
 
@@ -33,8 +33,8 @@ where
 }
 
 fn deserialize_to<'de, D>(deserializer: D) -> Result<String, D::Error>
-where
-    D: serde::Deserializer<'de>,
+    where
+        D: serde::Deserializer<'de>,
 {
     let s = String::deserialize(deserializer)?;
     Ok(s.replace("$HOME", &constants::home_path()))

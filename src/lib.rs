@@ -11,8 +11,11 @@ mod constants {
 
 mod models;
 mod services;
+mod factories;
+
 pub mod command_executor;
 pub mod commands;
 pub mod config;
+pub mod mapping;
 
 pub use constants::home_path;
