@@ -1,4 +1,5 @@
 use crate::models::PathBehavior;
+use crate::services::diff_checker;
 
 #[derive(Debug)]
 pub struct Dotfile {
@@ -30,5 +31,9 @@ impl Dotfile {
     pub fn sync(&self) {
         println!("syncing from {} to {}", &self.path_behavior.to(), &self.path_behavior.from());
         let _ = &self.path_behavior.sync();
+    }
+
+    pub fn diff(&self) {
+        diff_checker::run(&self.path_behavior.from(), &self.path_behavior.to()).unwrap();
     }
 }

@@ -35,7 +35,7 @@ fn run_on_all_data<F: Fn(&Dotfile)>(operation: F, operation_name: &str) {
 
         let mut command = String::new();
         loop {
-            print!("> {} to {} (y, n, a, q, h): ", operation_name.bold(), dotfile.path_behavior.from().red().bold());
+            print!("> {} to {} (y, n, d, a, q, h): ", operation_name.bold(), dotfile.path_behavior.from().red().bold());
 
             io::stdout().flush().unwrap();
             command.clear();
@@ -55,6 +55,10 @@ fn run_on_all_data<F: Fn(&Dotfile)>(operation: F, operation_name: &str) {
                 },
                 "h" => {
                     print_help_message();
+                    continue;
+                },
+                "d" => {
+                    dotfile.diff();
                     continue;
                 },
                 _ => {

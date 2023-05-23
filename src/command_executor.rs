@@ -1,6 +1,7 @@
 use std::fmt::Debug;
 use colored::*;
 use textwrap;
+use once_cell::sync::Lazy;
 
 #[derive(Debug)]
 enum Command {
@@ -19,9 +20,7 @@ struct CommandInfo {
     command: Command,
 }
 
-// HACK: 構造体か何かでよしなにしたい
-//       generate_commands叩くのを一回だけにしたい
-fn generate_commands() -> Vec<CommandInfo> {
+static COMMANDS: Lazy<Vec<CommandInfo>> = Lazy::new(|| {
     vec![
         CommandInfo {
             name: "copy",
@@ -54,23 +53,22 @@ fn generate_commands() -> Vec<CommandInfo> {
             command: Command::Help,
         },
     ]
-}
+});
 
 pub fn run(command: &str) {
-    let commands = generate_commands();
-    let command_info = commands.iter().find(|c| c.name == command).unwrap();
+    let command_info = COMMANDS.iter().find(|c| c.name == command).unwrap();
 
     match command_info.command {
         Command::Copy => crate::commands::copy(),
         Command::Sync => crate::commands::sync(),
         Command::Clean => crate::commands::clean(),
         Command::CleanSelf => crate::commands::clean_me(),
-        Command::Help => display_help_message(&commands),
+        Command::Help => display_help(),
     }
 }
 
-fn display_help_message(commands: &[CommandInfo]) {
-    let max_length = commands
+fn display_help() {
+    let max_length: usize = COMMANDS
         .iter()
         .map(|command| command.name.len())
         .max()
@@ -90,7 +88,7 @@ fn display_help_message(commands: &[CommandInfo]) {
         {}Commands:
     ", indent, indent_double, indent, indent));
 
-    for command in commands {
+    for command in COMMANDS.iter() {
         let padded_name = format!("{:<width$}", command.name.green().bold(), width = max_length);
         help_message.push_str(&format!("{}{}{}{}\n", indent_double, padded_name, indent, command.description.magenta()));
 
