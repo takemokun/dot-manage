@@ -27,7 +27,7 @@ pub fn run(path_from: &str, path_to: &str) -> Result<(), Error> {
                 if !is_displayed_previous {
                     println!("{}", "...diff".yellow());
                 }
-                println!("{}", l);
+                println!(" {}", l);
                 true
             },
             diff::Result::Both(_, _) => false,
