@@ -1,13 +1,3 @@
-ZSH_DIR="${HOME}/.zsh"
-
-# .zshがディレクトリで、読み取り、実行、が可能なとき
-if [ -d $ZSH_DIR ] && [ -r $ZSH_DIR ] && [ -x $ZSH_DIR ]; then
-    # zshディレクトリより下にある、.zshファイルの分、繰り返す
-    for file in ${ZSH_DIR}/**/*.zsh; do
-        # 読み取り可能ならば実行する
-        [ -r $file ] && source $file
-    done
-fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -88,6 +78,14 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+ZSH_DIR="${HOME}/.zsh"
+
+# zshの設定読み込み
+if [ -d $ZSH_DIR ] && [ -r $ZSH_DIR ] && [ -x $ZSH_DIR ]; then
+    for file in ${ZSH_DIR}/**/*.zsh; do
+        [ -r $file ] && source $file
+    done
+fi
 
 export NVM_DIR="/home/ec2-user/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -20,5 +20,16 @@ alias tmks="tmux kill-session -t"
 
 alias vi='nvim'
 
-
+# Rust製コマンドへの置き換え
+# ls
+alias ls="exa"
+alias lsa="exa -a"
+alias ll="exa -lh"
+alias la="exa -lah"
+# grep
+alias grep="rg"
+# find
+alias find="fd"
+# cat
+alias cat="bat"
 
