@@ -25,7 +25,7 @@
   cm = commit -m
   ################
   f = fetch
-  fp = fetch -p
+  fe = fetch -p
   ###############
   pu = push -u origin HEAD
   ################
