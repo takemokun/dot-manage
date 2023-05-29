@@ -1,5 +1,3 @@
-alias pst="ps -Ao user,uid,pid,pcpu,tty,comm -r | head -n 6"
-
 # Ruby関連
 alias be="bundle exec"
 
@@ -32,4 +30,7 @@ alias grep="rg"
 alias find="fd"
 # cat
 alias cat="bat"
-
+# ps
+alias ps="procs"
+alias pst="procs --sortd CPU | head -n 6"
+alias psc="procs --sortd CPU"
