@@ -5,27 +5,34 @@ use colored::*;
 use crate::models::Dotfile;
 use crate::factories::dotfile_factory;
 
-pub fn copy() {
-    run_on_all_data(Dotfile::copy, "copy");
+pub fn copy(file_name: Option<&str>) {
+    run_on_all_data(Dotfile::copy, "copy", file_name);
 }
 
-pub fn sync() {
-    run_on_all_data(Dotfile::sync, "sync");
+pub fn sync(file_name: Option<&str>) {
+    run_on_all_data(Dotfile::sync, "sync", file_name);
 }
 
-pub fn clean() {
-    run_on_all_data(Dotfile::clean, "clean");
+pub fn clean(file_name: Option<&str>) {
+    run_on_all_data(Dotfile::clean, "clean", file_name);
 }
 
-pub fn clean_me() {
-    run_on_all_data(Dotfile::clean_me, "clean_me")
+pub fn clean_me(file_name: Option<&str>) {
+    run_on_all_data(Dotfile::clean_me, "clean_me", file_name);
 }
 
-fn run_on_all_data<F: Fn(&Dotfile)>(operation: F, operation_name: &str) {
+fn run_on_all_data<F: Fn(&Dotfile)>(operation: F, operation_name: &str, file_name: Option<&str>) {
     println!("starting {}...", operation_name);
 
-    let dotfiles_data = dotfile_factory::create_from_mappings();
     let mut is_all = false;
+
+    let dotfiles_data = dotfile_factory::create_from_mappings();
+    let dotfiles_data = match file_name {
+        Some(grep) => {
+            dotfiles_data.into_iter().filter(|dotfile| dotfile.path_behavior.from().contains(grep)).collect()
+        },
+        None => dotfiles_data,
+    };
 
     for dotfile in &dotfiles_data {
         if is_all {

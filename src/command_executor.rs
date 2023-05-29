@@ -55,14 +55,14 @@ static COMMANDS: Lazy<Vec<CommandInfo>> = Lazy::new(|| {
     ]
 });
 
-pub fn run(command: &str) {
+pub fn run(command: &str, file_name: Option<&str>) {
     let command_info = COMMANDS.iter().find(|c| c.name == command).unwrap();
 
     match command_info.command {
-        Command::Copy => crate::commands::copy(),
-        Command::Sync => crate::commands::sync(),
-        Command::Clean => crate::commands::clean(),
-        Command::CleanSelf => crate::commands::clean_me(),
+        Command::Copy => crate::commands::copy(file_name),
+        Command::Sync => crate::commands::sync(file_name),
+        Command::Clean => crate::commands::clean(file_name),
+        Command::CleanSelf => crate::commands::clean_me(file_name),
         Command::Help => display_help(),
     }
 }

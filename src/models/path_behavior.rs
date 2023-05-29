@@ -86,12 +86,11 @@ impl PathBehavior for AppendBehavior {
     }
 
     fn append_targets(&self) -> Vec<(String, String)> {
-        let from_path = Path::new(&self.from);
+        let from_dir_path = Path::new(&self.from);
         let to_path = Path::new(&self.to);
-        from_path.read_dir().unwrap().map(|entry| {
-            let entry = entry.unwrap();
-            let entry_path_name = entry.file_name();
-            let entry_from = from_path.join(&entry_path_name);
+        from_dir_path.read_dir().unwrap().map(|entry| {
+            let entry_path_name = entry.unwrap().file_name();
+            let entry_from = from_dir_path.join(&entry_path_name);
             let entry_from = entry_from.to_str().unwrap().to_string();
             let entry_to = to_path.join(&entry_path_name);
             let entry_to = entry_to.to_str().unwrap().to_string();
