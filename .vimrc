@@ -8,7 +8,6 @@ endif
 " Required:
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 
-
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!

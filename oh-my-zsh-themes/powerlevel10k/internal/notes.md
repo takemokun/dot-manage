@@ -190,7 +190,6 @@ Respect `POWERLEVEL9K_VCS_STASH_ICON` overrides but not anything with segment na
 Define `POWERLEVEL9K_VCS_*` parameters in config templates for all symbols used in
 `my_git_formatter`. Add missing entries to `icons`. Use `$P9K_ICON[...]` within `my_git_formatter`.
 Add a screen to the wizard to choose between clear and circled icons.
-
 ---
 
 Add a screen to the wizard asking whether to set `POWERLEVEL9K_VCS_DISABLED_WORKDIR_PATTERN='~'`.
