@@ -83,14 +83,17 @@ fn display_help() {
         =====================================================
 
         {}Usage:
-        {}dotfiles <command>
-        {}
+        {}dotfiles [Command] [filename]
+
+        {}filename:
+        {}If you want to execute command only for specific file, you can specify filename. (optional)
+
         {}Commands:
-    ", indent, indent_double, indent, indent));
+    ", indent, indent_double, indent, indent_double, indent));
 
     for command in COMMANDS.iter() {
         let padded_name = format!("{:<width$}", command.name.green().bold(), width = max_length);
-        help_message.push_str(&format!("{}{}{}{}\n", indent_double, padded_name, indent, command.description.magenta()));
+        help_message.push_str(&format!("{}{}{}{}\n", indent_double, padded_name, indent, command.description.yellow()));
 
         if !command.example.is_empty() {
             let indent_to_description_line = " ".repeat(max_length);
