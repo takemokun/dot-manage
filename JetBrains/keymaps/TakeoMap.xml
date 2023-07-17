@@ -1,0 +1,65 @@
+<keymap version="1" name="TakeoMap" parent="Mac OS X 10.5+">
+  <action id="ActivateBookmarksToolWindow" />
+  <action id="ActivateTerminalToolWindow">
+    <keyboard-shortcut first-keystroke="meta 2" />
+    <keyboard-shortcut first-keystroke="ctrl space" second-keystroke="b" />
+  </action>
+  <action id="ChangesView.SetDefault" />
+  <action id="CodeCompletion" />
+  <action id="CollapsiblePanel-toggle" />
+  <action id="Console.TableResult.ColumnVisibility" />
+  <action id="CopyPathFromRepositoryRootProvider">
+    <keyboard-shortcut first-keystroke="ctrl meta p" />
+  </action>
+  <action id="Diff.ApplyLeftSide">
+    <keyboard-shortcut first-keystroke="ctrl meta right" />
+    <keyboard-shortcut first-keystroke="shift ctrl w" />
+  </action>
+  <action id="Diff.FocusOppositePane">
+    <keyboard-shortcut first-keystroke="shift ctrl tab" />
+    <keyboard-shortcut first-keystroke="shift meta n" />
+  </action>
+  <action id="DuplicatesForm.SendToRight" />
+  <action id="EditorBackSpace">
+    <keyboard-shortcut first-keystroke="back_space" />
+    <keyboard-shortcut first-keystroke="shift back_space" />
+    <keyboard-shortcut first-keystroke="ctrl h" />
+  </action>
+  <action id="EditorChooseLookupItemCompleteStatement">
+    <keyboard-shortcut first-keystroke="shift meta enter" />
+    <keyboard-shortcut first-keystroke="shift meta semicolon" />
+  </action>
+  <action id="EditorCompleteStatement">
+    <keyboard-shortcut first-keystroke="shift meta enter" />
+    <keyboard-shortcut first-keystroke="shift meta semicolon" />
+  </action>
+  <action id="FileChooser.GotoProject" />
+  <action id="FocusEditor">
+    <keyboard-shortcut first-keystroke="ctrl meta 2" />
+    <keyboard-shortcut first-keystroke="ctrl space" second-keystroke="j" />
+  </action>
+  <action id="MethodDown">
+    <keyboard-shortcut first-keystroke="shift ctrl down" />
+    <keyboard-shortcut first-keystroke="shift meta j" />
+  </action>
+  <action id="MethodUp">
+    <keyboard-shortcut first-keystroke="shift ctrl up" />
+    <keyboard-shortcut first-keystroke="shift meta k" />
+  </action>
+  <action id="NewScratchFile">
+    <keyboard-shortcut first-keystroke="shift ctrl meta n" />
+  </action>
+  <action id="QuickPreview" />
+  <action id="Terminal.SwitchFocusToEditor">
+    <keyboard-shortcut first-keystroke="ctrl q" />
+  </action>
+  <action id="TypeHierarchy" />
+  <action id="TypeHierarchyBase.BaseOnThisType" />
+  <action id="UsageFiltering.WriteAccess" />
+  <action id="Vcs.Diff.ExcludeChangedLinesFromCommit">
+    <keyboard-shortcut first-keystroke="shift ctrl meta a" />
+  </action>
+  <action id="Vcs.Diff.IncludeOnlyChangedLinesIntoCommit">
+    <keyboard-shortcut first-keystroke="shift ctrl a" />
+  </action>
+</keymap>
