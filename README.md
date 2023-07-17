@@ -1,5 +1,9 @@
 # dotfiles
 
+dotfileの管理をちょっとだけ楽しく楽にするツール🛠️
+
+![sample.gif](sample.gif)
+
 ## install
 
 ```
@@ -8,9 +12,11 @@ git clone --depth=1 https://github.com/takemokun/dotfiles.git ~/.config/dotfiles
 
 ## 使い方
 
-※ cargo（rust）が使える環境が必要です
-
-[cargo install](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+### 注意事項
+- takemokun用（ワタクシ用）の設定ファイルが入ってるのでsrc配下以外のファイルはよしなに変えてください。
+  - [mapping.json](https://github.com/takemokun/dotfiles/blob/main/mapping.json)を変えれば、設定ファイルの情報を変更できます。
+- cargo（rust）が使える環境が必要です
+  - [cargo install](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 
 ### .envの設定
 ```zsh
@@ -25,7 +31,7 @@ HOME_PATH=/Users/username
 ### dotfilesコマンドのビルド
     
 ```zsh
-> cargo build --release
+> cargo install --path .
 
 # ビルドされたコマンドの実行（ヘルプが表示されます）
 > dotfiles
@@ -37,12 +43,12 @@ HOME_PATH=/Users/username
 
 ```zsh
 # dotfilesから設定したパスへコピーする場合
-> dotfiles copy
+> dotfiles apply
 
 # 設定したパスからdotfilesへ`.zshrc`のみコピーする場合
 > dotfiles sync zshrc
 
-# copyやsyncを実行するとバックアップファイルが作成されます（`.zshrc.20230505`てきな）
+# applyやsyncを実行するとバックアップファイルが作成されます（`.zshrc.20230505`てきな）
 # バックアップファイルを削除する場合は
 #   - `dotfiles clean`（設定したパスのバックアップファイル削除）
 #   - `dotfiles clean-me`（dotfiles内のバックアップファイル削除）
@@ -51,6 +57,8 @@ HOME_PATH=/Users/username
 
 
 ## 必要なこと
+※このdotfilesをそのまま使う場合に必要なことなので、コマンドだけ使う場合は不要なことに変わります...
+
 ### tmux入れる
 ```zsh
 brew install tmux
@@ -66,7 +74,9 @@ brew install neovim
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
-### 備考
-tmuxifierとかも他にも入れないといけないものあるかもなので適宜よろろ
+たぶん他にもなんかしないといけないかも🤔
 
-※このREADME自体だいぶ適当なので基本適宜でよろろろ
+### 備考
+基本的に適当なのでよしなにどうぞ。
+
+⚠️現状`dotfiles apply`などでディレクトリのdiffを表示しようとするとエラーになります⚠️
