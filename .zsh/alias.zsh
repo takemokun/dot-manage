@@ -5,7 +5,7 @@ alias goland="/usr/local/bin/goland"
 alias rubymine="/usr/local/bin/mine"
 
 # Docker関連
-alias dc="docker-compose"
+alias dc="docker compose"
 alias da="docker attach"
 alias dls="docker container ls"
 alias dlog="docker logs -f"
