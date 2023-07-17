@@ -2,14 +2,14 @@ use crate::constants;
 use std::fs::File;
 use std::io::BufReader;
 
-use crate::models::{
+use crate::entities::{
     Dotfile,
     PathBehavior,
     AppendBehavior,
     ReplaceBehavior,
 };
 
-use crate::mapping::{Mapping, CopyType};
+use crate::entities::mapping::{Mapping, CopyType};
 
 pub fn create_from_mappings() -> Vec<Dotfile> {
     let file_path = constants::FILE_PATH;

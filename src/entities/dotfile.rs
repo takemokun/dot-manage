@@ -1,4 +1,4 @@
-use crate::models::PathBehavior;
+use crate::entities::PathBehavior;
 use crate::services::diff_checker;
 
 #[derive(Debug)]
@@ -13,9 +13,9 @@ impl Dotfile {
         }
     }
 
-    pub fn copy(&self) {
+    pub fn apply(&self) {
         println!("copying from {} to {}", &self.path_behavior.from(), &self.path_behavior.to());
-        let _ = &self.path_behavior.copy();
+        let _ = &self.path_behavior.apply();
     }
 
     pub fn clean(&self) {

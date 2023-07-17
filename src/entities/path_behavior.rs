@@ -1,11 +1,11 @@
 use std::fmt::Debug;
-use crate::services::file_manager;
 use std::path::Path;
+use crate::services::file_manager;
 
 pub trait PathBehavior: Debug {
     fn from(&self) -> &String;
     fn to(&self) -> &String;
-    fn copy(&self);
+    fn apply(&self);
     fn sync(&self);
     fn clean(&self);
     fn clean_me(&self);
@@ -35,7 +35,7 @@ impl PathBehavior for ReplaceBehavior {
         &self.to
     }
 
-    fn copy(&self) {
+    fn apply(&self) {
         file_manager::copy(&self.from, &self.to);
     }
 
@@ -61,7 +61,7 @@ impl PathBehavior for AppendBehavior {
         &self.to
     }
 
-    fn copy(&self) {
+    fn apply(&self) {
         for target in &self.append_targets() {
             file_manager::copy(&target.0, &target.1);
         }
