@@ -3,3 +3,4 @@
 .env
 .idea
 .zsh/local
+nvim/plugin/packer_compiled.lua
