@@ -87,17 +87,8 @@ if [ -d $ZSH_DIR ] && [ -r $ZSH_DIR ] && [ -x $ZSH_DIR ]; then
     done
 fi
 
-export NVM_DIR="/home/ec2-user/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+PATH="$HOME/homebrew/bin:$PATH"
 
-export ES_HOME=/usr/share/elasticsearch
-export PATH="/usr/share/elasticsearch/bin:$PATH"
-
-export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH="$PATH":"$HOME/fvm/default/bin"
-export PATH=/Users/takeo/.nimble/bin:$PATH
-
-export PATH="$HOME/.tmuxifier/bin:$PATH"
-eval "$(tmuxifier init -)"
+# export PATH="$HOME/.tmuxifier/bin:$PATH"
+# eval "$(tmuxifier init -)"
 
