@@ -100,6 +100,14 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 ```
 - [pakcer](https://github.com/wbthomason/packer.nvim)
 
+### fzf入れる
+```
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+```
+
+- [fzf](https://github.com/junegunn/fzf)
+
 ### powerlevel10k入れる
 ```zsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k

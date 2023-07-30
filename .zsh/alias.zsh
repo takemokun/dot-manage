@@ -1,3 +1,5 @@
+alias vi='nvim'
+
 # Ruby関連
 alias be="bundle exec"
 
@@ -16,7 +18,9 @@ alias tma="tmux attach -t"
 alias tms="tmux new -s"
 alias tmks="tmux kill-session -t"
 
-alias vi='nvim'
+# fzf
+alias vif='vi $(fzf)'
+alias git-switch="git branch | fzf | xargs git switch"
 
 # Rust製コマンドへの置き換え
 # ls
