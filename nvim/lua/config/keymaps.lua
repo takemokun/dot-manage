@@ -5,14 +5,14 @@ local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- 行の端に行く
 keymap("n", "<Space>h", "^", opts)
 keymap("n", "<Space>l", "$", opts)
 keymap("x", "<Space>h", "^", opts)
 keymap("x", "<Space>l", "$", opts)
+
+keymap('v', '<Space>p', '"_dP', opts)
 
 -- 行末までのヤンクにする
 keymap("n", "Y", "y$", opts)
@@ -26,10 +26,11 @@ keymap("n", "ss", ":split<Return><C-w>w", opts)
 keymap("n", "sv", ":vsplit<Return><C-w>w", opts)
 
 -- 元のままだとtmuxとかぶる
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+-- これいらないかも
+-- keymap("n", "<C-h>", "<C-w>h", opts)
+-- keymap("n", "<C-j>", "<C-w>j", opts)
+-- keymap("n", "<C-k>", "<C-w>k", opts)
+-- keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- インサートモードで bash 風キーマップ
 -- ンサートモードで bash 風キーマップ
@@ -52,3 +53,25 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 vim.keymap.set('n', '<leader>b', vim.cmd.NvimTreeToggle)
+
+-- use keymap in file-header-view(bufferline-plugin)
+-- bufferline close setting
+vim.keymap.set('n', '<leader>wl', '<CMD>BufferLineCloseRight<CR>')
+vim.keymap.set('n', '<leader>wh', '<CMD>BufferLineCloseLeft<CR>')
+vim.keymap.set('n', '<leader>wall', '<CMD>BufferLineCloseOthers<CR>')
+vim.keymap.set('n', '<leader>we', '<CMD>BufferLinePickClose<CR>')
+
+-- (reference)https://github.com/kazhala/dotfiles/blob/master/.config/nvim/lua/kaz/plugins/bufferline.lua
+vim.keymap.set('n', 'gb', '<CMD>BufferLinePick<CR>')
+vim.keymap.set('n', '<leader>ts', '<CMD>BufferLinePickClose<CR>')
+vim.keymap.set('n', 'tl', '<CMD>BufferLineCycleNext<CR>')
+vim.keymap.set('n', 'th', '<CMD>BufferLineCyclePrev<CR>')
+vim.keymap.set('n', ']b', '<CMD>BufferLineMoveNext<CR>')
+vim.keymap.set('n', '[b', '<CMD>BufferLineMovePrev<CR>')
+vim.keymap.set('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')
+
+-- ToggleTerm
+keymap('n', '<leader>tj', ':ToggleTerm size=40 direction=float<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>th', ':ToggleTerm size=20 direction=horizontal<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>tg', ':TermExec cmd="lazygit" size=40 direction=float<CR>', { noremap = true, silent = true })
+
