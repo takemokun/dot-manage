@@ -1,4 +1,4 @@
-# dotfiles
+# dot-manage
 
 dotfileの管理をちょっとだけ楽しく楽にするツール🛠️
 
